@@ -1,0 +1,14 @@
+INSERT into staff_tanle(ID, WORK_NAME, NAME, AGE) VALUES(1,'保安','张三',3);
+
+select * from staff_tanle; /*显示表格*/
+
+insert into staff_tanle values (2,'希求','阿波罗',9); /*直接在尾巴处插入*/
+
+insert into staff_tanle values (3,'不知道','测试文本',9);/*z再添加一个*/
+
+update staff_tanle set name='张三女' where id =1; /*修改数据*/
+/*如果在更新数据的时候，没有出现where 这个将全部的数据都进行更新*/
+
+delete  from staff_tanle where  age = '3' ; /**删除年龄为三的表格/
+
+delete  from staff_tanle; /*删除所有的，因为没有条件*/
