@@ -1,0 +1,56 @@
+create  table  paly(
+    id int  comment 'id名称',
+    worknm varchar(20)  comment '工作地址',
+    name varchar(20)  comment '姓名',
+   gender char   comment '性别',
+    age int1  comment '年龄',
+    idcard  long comment '身份证hao'
+#     workdeice varchar(30) comment '工作地址',
+#     worktime long comment  '入职时间'
+
+
+) comment '表格';
+
+insert into paly(id, worknm, name, gender, age, idcard)
+values(1,'1101','张三','男',33,'21212132'),
+      (1,'1123','历史方法','男',90,'21212132'),
+      (1,'1121','汪汪','男',10,'21212132'),
+      (1,'1211','阿花的','女',25,'21212132'),
+      (1,'1134','抽搭','女',16,'21212132'),
+      (1,'1143','愁暗啊','男',33,'21212132'),
+      (1,'1154','黑吧','男',23,'21212132'),
+      (1,'1154','天照','女',32,'21212132'),
+      (1,'1132','洗吧的','男',33,'21212132');
+
+update paly set worpace='北京';
+update  paly set worktime ='2019/2/26';
+
+# update  paly set worktime ='2022/3/26'  where id= 1;
+
+delete from paly limit 10;
+
+select  age,name,gender from paly; /*表的查询使用*/
+
+select *from paly;
+
+select worknm as '工作地址' from paly;
+/*查询语句*/
+
+select *from paly where age >30;
+select name from paly;
+
+
+select *from paly where age  between  20 and 70;
+
+
+select *from paly where gender = '女' && paly.age <25;
+
+/*满足18或 20 。。。。的年纪 有就可以 */
+select *from paly where age= 18 or age=20 or  age= 16;
+
+select *from paly where age in(16,23,45);/*同上效果一样*/
+/*查询名字为俩字符的*/
+select *from paly where name like '__';
+
+/*%X来查找单字符的  下边的哪个是查找的是最后一位是x的*/
+select *from paly where name like '%x';
