@@ -1,0 +1,94 @@
+今天学习的量比较大，总结起来可能会有点草率，但是我尽力
+
+1- 对语句执行的优先级比如说
+
+select  *from paly where gender = '男' and age  between  20 and 40 && paly.name like '___';
+
+那么先执行的是 select 然后就是form就是来自你的表格，然后你的条件 where 如果你要排序的话就会执行order by 或者其他的操作，下边有图示，可参考
+
+![image.png](https://flowus.cn/preview/f45939fa-7165-4675-adb0-18273715b5a4)
+
+2-有关用户管理的页面，就是我们在操作的时候可以查看表格啥的，----想一下那个我们在终端中打开的时候回要mysql -u root -p这个是打开的是根路径 但是我们可以去创建一些新的
+
+# 创建一个用户 只能在主机上使用 账号 itcast 密码123456
+create user 'itcast'@'localhost' identified  by '123456';
+
+具有固定的格式操作
+
+# 创建一个用户 任意主机上使用 账号 itcast 密码123456
+# %是任意主机 localhost是本地主机
+create user 'duas'@'%' identified  by '123456';
+
+
+
+然后就自然而然的到来修改密码的阶段
+
+# 修改密码,格式
+alter user 'duas'@'%' identified  with mysql_native_password by '6666';
+
+当你执行完之后，你可以试一下，在你的终端尝试一下，输入原密码一般是进不去的
+
+老规矩，删除就用drop，无论说是删除表格还是这个用户啥的，都是使用的是这个是drop
+
+# 删除用户
+drop user 'itcast'@'localhost';
+
+![image.png](https://flowus.cn/preview/cc858668-1381-4f5a-b283-f328e2090319)
+
+展示用户的权限信息，有的是被允许有的是不被允许
+
+![image.png](https://flowus.cn/preview/3590dd53-29af-496d-9158-a8b139308bd7)
+
+show grants for 'duas'@'%';
+展示用户的权限信息
+grant all on root.* to 'duas';
+允许所有的权限信息
+revoke  all on root.* from 'duas'@'%';
+
+关闭刚才赋予的权限信息
+
+![image.png](https://flowus.cn/preview/56c2edd1-d0b3-40e6-9af4-6a006e2acc4b)
+
+对于数据库也有很多的库函数，下面是常用库函数的使用
+
+![image.png](https://flowus.cn/preview/41db57f5-6f25-4032-8641-8abdbbc88520)
+
+比如说第一个： select  concat('im','duasing');
+
+![image.png](https://flowus.cn/preview/f45af305-24b0-4ca6-b1ff-9e4d459bd536)
+
+![image.png](https://flowus.cn/preview/026b26a2-aceb-405a-aaed-69c7069dcea7)
+
+![image.png](https://flowus.cn/preview/2cfd425b-4668-4cea-9d7e-a03859f92abe)
+
+# 对表格进行补0
+update paly set worknm =lpad(worknm,5,0);
+# 向上取整
+select  concat('im','duasing');
+select ceil(3.4);
+select floor(4,3);
+# 生成六位数随机数
+select mod(3,5);
+# 四舍五入 2是小数点后的位数
+select rand(3.213,2);
+select round(rand()*1000000 ,0);
+
+select lpad(round(rand()*1000000 ,0),7,'0');
+# 日期函数
+select  curdate();
+select  curtime();
+select  now();
+# 显示当前的年份
+select  year(now());
+
+select  date (now());
+# 往后推时间
+select date_add(now(),interval 70 day );
+
+# 求取俩日期的差值 前边减去后边 若相反则变成负号
+select datediff('2030-1-23',now());
+
+select name,datediff(curdate(),paly.worktime) from paly;
+
+update paly set  worktime='2022-2-23' where name='汪汪';
+
