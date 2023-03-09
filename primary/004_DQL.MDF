@@ -1,0 +1,74 @@
+/*DQL（聚合函数）的使用*/
+
+
+/*格式： select  操作（方向） from 表格名称*/
+select count(age) from paly ; /*计算age数量*/
+
+select是使用最多的一个东西 这个是来计算的数量
+
+![image.png](https://flowus.cn/preview/67315554-eba1-4ba7-bed2-39d9526ea01b)
+
+
+
+
+select count(*) from paly; /*COUNT(*)函数返回由SELECT语句返回的结果集中的行数。COUNT(*)函数计算包含NULL和非NULL值的行，即：所有行。
+ */
+
+ select avg(age) from paly;  /*平均数值*/
+
+ select  max(age) from paly;
+
+select  min(age) from paly;
+
+/*这个是对所有男性的年龄就平均数*/
+select avg(age) from paly where gender ='男';
+
+/*分组查询*/
+/*select 字段列表 from 表名[where 条件] grop by 分组字段名 */
+
+select gender,count(*) from paly group by gender;
+
+![image.png](https://flowus.cn/preview/d52cb430-a3cd-4534-8b79-e8efe448588c)
+
+
+
+
+
+select gender,avg(age) from paly group by gender;
+/*要求输出的要相对应的上，就是你的select的输出和后边的where by的名称是要相同的才可以*/
+select name, count(*) from paly where  age <20 group by name;
+
+
+/*排序查询*/
+/*select 字段列表 from 表名 order by 字段1 排序方式 字段2 排序方式*/
+/* */
+/* asc是升序排序  desc 是降序操作*/
+select *from  paly order by  age asc ;
+select *from  paly order by  age desc  ;
+
+select  * from paly order by  age; /*默认是升序 */
+
+/* 刚才的格式中是具有可以多个条件进行的*/
+
+select * from paly order by age desc , idcard desc ;
+
+
+/*分页查询*/
+/*select 字段列表 from 表名 limit 起始索引 查询记录数*/
+select  * from paly limit  0,10; /*c查询第一页员工数据，每一页显示十条*/
+
+select  * from paly limit 10,10; /*剩下的输出*/
+
+/*练习*/
+/*输出女性且年龄在16 23 45*/
+select *from paly where gender ='女' and age in(16,23,45) ;
+
+/*男性 年龄在20 -40 且名字三个字*/
+select  *from paly where gender = '男' and age  between  20 and 40 && paly.name like '___';
+/*年龄小于60 的总人数*/
+select gender, count(*) from paly where age < 60 group by  gender;
+
+/*查询年龄小于35岁员工的姓名和年龄，并对其进行升序操作，若相同就按照入职时间优先*/
+
+select  name ,age from paly where  age <=35 order by age asc;
+
