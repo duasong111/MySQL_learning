@@ -1,0 +1,33 @@
+select worknm as '工作地址' from paly;
+/*查询语句*/
+
+select *from paly where age >30;
+select name from paly;
+
+
+![image.png](https://flowus.cn/preview/eaab464c-2386-4427-9753-804e2c9bcb04)
+
+采用select来进行的查询语句的使用，地址是 '工作地址' 来自于表格play
+
+
+
+select *from paly where age  between  20 and 70;
+//这个和上边的那个是一样，不过是将年龄的范围划分的额更小
+
+select *from paly where gender = '女' && paly.age <25;
+
+//这个选择是性别是女性，然后年龄控制在25岁之下
+
+/*满足18或 20 。。。。的年纪 有就可以 */
+select *from paly where age= 18 or age=20 or  age= 16;
+select *from paly where age in(16,23,45);/*同上效果一样*/
+
+//上边俩的控制的效果是一样的，我还是蛮喜欢用in的
+/*查询名字为俩字符的*/
+select *from paly where name like '__';
+//用下划线来控制字符的长度，不得不佩服那个编辑人员的智慧
+/*%X来查找单字符的  下边的哪个是查找的是最后一位是x的*/
+
+// %x是仅仅控制一位的，可以来控制末尾。
+select *from paly where name like '%x';
+
